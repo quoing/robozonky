@@ -1,0 +1,3 @@
+#!/bin/sh
+java -jar /opt/robozonky/bin/robozonky-distribution-cli-*-full.jar $@
+
