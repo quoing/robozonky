@@ -29,7 +29,7 @@ docker run -ti --rm
     * DRY - dry-run, no money will be used, good for testing, to disable dry-mode omit this parameter
     * KEYSTORE - name of keystore file to use
     * KEYSTORE_PASSWORD - keystore password
-    * STRATEGY - strategy filename (located in /etc/robozonky)
+    * STRATEGY - strategy filename (full path required eg. /etc/robozonky/default.txt)
 
 ```
 docker run -ti --rm 
@@ -38,7 +38,7 @@ docker run -ti --rm
   -e "DRY=yes"
   -e "KEYSTORE=default.keystore"
   -e "KEYSTORE_PASSWORD=testovaci"
-  -e "STRATEGY=default.txt"
+  -e "STRATEGY=/etc/robozonky/default.txt"
   quoing/robozonky
 ```
 
