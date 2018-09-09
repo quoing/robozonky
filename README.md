@@ -18,7 +18,7 @@ docker pull quoing/robozonky:jdk11
 docker run -ti --rm \
   -v $(PWD)/var:/var/robozonky \
   -v $(PWD)/etc:/etc/robozonky \
-  quoing/robozonky \
+  quoing/robozonky:jdk11 \
   robozonky-cli zonky-credentials -k default.keystore -s testovaci -u muj@example.com -p nejtajnejsi
 ```
 * if you didn't use installer you will need to create:
@@ -39,7 +39,7 @@ docker run -ti --rm
   -e "KEYSTORE=default.keystore"
   -e "KEYSTORE_PASSWORD=testovaci"
   -e "STRATEGY=/etc/robozonky/default.txt"
-  quoing/robozonky
+  quoing/robozonky:jdk11
 ```
 
 ## Report bugs ##
