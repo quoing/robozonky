@@ -10,15 +10,15 @@
 * pull latest image from hub
 
 ```
-docker pull quoing/robozonky
+docker pull quoing/robozonky:jdk11
   ```
 * create keystore (in case you need one), don't forget to change keystore filename, keystore password and email, password. For more details see robozonky CLI documentation.
 
 ```
-docker run -ti --rm 
-  -v $(PWD)/var:/var/robozonky 
-  -v $(PWD)/etc:/etc/robozonky 
-  quoing/robozonky 
+docker run -ti --rm \
+  -v $(PWD)/var:/var/robozonky \
+  -v $(PWD)/etc:/etc/robozonky \
+  quoing/robozonky \
   robozonky-cli zonky-credentials -k default.keystore -s testovaci -u muj@example.com -p nejtajnejsi
 ```
 * if you didn't use installer you will need to create:
@@ -33,8 +33,8 @@ docker run -ti --rm
 
 ```
 docker run -ti --rm 
-  -v $(PWD)/var:/var/robozonky 
-  -v $(PWD)/etc:/etc/robozonky 
+  -v $PWD/var:/var/robozonky 
+  -v $PWD/etc:/etc/robozonky 
   -e "DRY=yes"
   -e "KEYSTORE=default.keystore"
   -e "KEYSTORE_PASSWORD=testovaci"
