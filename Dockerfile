@@ -2,8 +2,14 @@ FROM alpine:latest AS builder
 ENV SOURCE_DIRECTORY=/usr/src/robozonky \
     BINARY_DIRECTORY=/tmp/robozonky
 #COPY assets/* $SOURCE_DIRECTORY
+ARG GIT_TAG=robozonky-4.8.2
 RUN apk add --no-cache maven xz git openjdk8 \
-    && mkdir -p /usr/src && cd /usr/src && git clone https://github.com/RoboZonky/robozonky.git /usr/src/robozonky
+    && mkdir -p /usr/src \
+    && cd /usr/src \
+    && git clone https://github.com/RoboZonky/robozonky.git /usr/src/robozonky \
+    && cd /usr/src/robozonky \
+    && git checkout $GIT_TAG
+WORKDIR $SOURCE_DIRECTORY
 WORKDIR $SOURCE_DIRECTORY
 ENV PATH="${PATH}:/usr/lib/jvm/java-1.8-openjdk/bin"
 #RUN mvn clean install -T1C -B -Dgpg.skip -DskipTests -Ddocker

@@ -8,16 +8,19 @@
 
 ## How to deploy docker image
 * pull latest image from hub
-
 ```
 docker pull quoing/robozonky
   ```
+or for docker image based on OpenJDK11 (Early Access), adapt later commands to selected version
+```
+docker pull quoing/robozonky:jdk11
+```
 * create keystore (in case you need one), don't forget to change keystore filename, keystore password and email, password. For more details see robozonky CLI documentation.
 
 ```
 docker run -ti --rm 
-  -v $(PWD)/var:/var/robozonky 
-  -v $(PWD)/etc:/etc/robozonky 
+  -v $PWD/var:/var/robozonky 
+  -v $PWD/etc:/etc/robozonky 
   quoing/robozonky 
   robozonky-cli zonky-credentials -k default.keystore -s testovaci -u muj@example.com -p nejtajnejsi
 ```
@@ -33,8 +36,8 @@ docker run -ti --rm
 
 ```
 docker run -ti --rm 
-  -v $(PWD)/var:/var/robozonky 
-  -v $(PWD)/etc:/etc/robozonky 
+  -v $PWD/var:/var/robozonky 
+  -v $PWD/etc:/etc/robozonky 
   -e "DRY=yes"
   -e "KEYSTORE=default.keystore"
   -e "KEYSTORE_PASSWORD=testovaci"
