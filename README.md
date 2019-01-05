@@ -7,14 +7,10 @@
 * This work is based on official docker container: <https://hub.docker.com/r/robozonky/robozonky/>
 
 ## How to deploy docker image
-* pull latest image from hub
+* pull latest image from hub, image is based on Alpine Linux and JDK 13 (Early Access from Oracle)
 ```
 docker pull quoing/robozonky
   ```
-or for docker image based on OpenJDK11 (Early Access), adapt later commands to selected version
-```
-docker pull quoing/robozonky:jdk11
-```
 * create keystore (in case you need one), don't forget to change keystore filename, keystore password and email, password. For more details see robozonky CLI documentation.
 
 ```
