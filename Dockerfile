@@ -16,7 +16,7 @@ ARG GIT_TAG=robozonky-5.2.7
 ENV SOURCE_DIRECTORY=/usr/src/robozonky \
     BINARY_DIRECTORY=/tmp/robozonky
 #COPY assets/* $SOURCE_DIRECTORY
-RUN apk add --no-cache xz git \
+RUN apk add --no-cache xz git binutils \
     && mkdir -p /usr/src && cd /usr/src && git clone https://github.com/RoboZonky/robozonky.git /usr/src/robozonky && cd /usr/src/robozonky && git checkout $GIT_TAG
 WORKDIR $SOURCE_DIRECTORY
 RUN mvn clean install -T1C -B -Dgpg.skip -DskipTests  -Dmaven.javadoc.skip=true
