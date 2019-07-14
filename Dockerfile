@@ -1,8 +1,8 @@
 FROM alpine:latest AS builder
 MAINTAINER Quoing
 WORKDIR /opt
-ARG JDK_URL=https://download.java.net/java/early_access/alpine/1/binaries/openjdk-13-ea+1_linux-x64-musl_bin.tar.gz
-ARG MAVEN_URL=https://www-us.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
+ARG JDK_URL=https://download.java.net/java/early_access/alpine/27/binaries/openjdk-13-ea+27_linux-x64-musl_bin.tar.gz
+ARG MAVEN_URL=https://www-us.apache.org/dist/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.tar.gz
 RUN apk add --virtual .build-deps --no-cache wget \
       && wget -q --no-check-certificate $JDK_URL \
       && wget -q --no-check-certificate $MAVEN_URL \
@@ -11,8 +11,8 @@ RUN apk add --virtual .build-deps --no-cache wget \
       && rm -f *.tar.gz apk \
       && apk del --no-cache .build-deps
 ENV JAVA_HOME=/opt/jdk-13
-ENV PATH="/opt/jdk-13/bin:/opt/apache-maven-3.6.0/bin:${PATH}"
-ARG GIT_TAG=robozonky-5.1.1
+ENV PATH="/opt/jdk-13/bin:/opt/apache-maven-3.6.1/bin:${PATH}"
+ARG GIT_TAG=robozonky-5.2.7
 ENV SOURCE_DIRECTORY=/usr/src/robozonky \
     BINARY_DIRECTORY=/tmp/robozonky
 #COPY assets/* $SOURCE_DIRECTORY
@@ -33,7 +33,7 @@ RUN ROBOZONKY_VERSION=$(mvn -q \
 RUN jlink \
      --module-path /opt/java/jmods \
      --compress=2 \
-     --add-modules jdk.jfr,jdk.management.agent,java.base,java.logging,java.xml,jdk.unsupported,java.sql,java.naming,java.desktop,java.management,java.security.jgss,java.instrument \
+     --add-modules jdk.jfr,jdk.management.agent,java.base,java.logging,java.xml,jdk.unsupported,java.sql,java.naming,java.desktop,java.management,java.security.jgss,java.instrument,java.compiler \
      --no-header-files \
      --no-man-pages \
      --strip-debug \
