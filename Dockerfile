@@ -1,8 +1,11 @@
 FROM alpine:latest AS builder
 MAINTAINER Quoing
 WORKDIR /opt
-ARG JDK_URL=https://download.java.net/java/early_access/alpine/27/binaries/openjdk-13-ea+27_linux-x64-musl_bin.tar.gz
-ARG MAVEN_URL=https://www-us.apache.org/dist/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.tar.gz
+ARG JDK_VERSION=openjdk-14-ea+12
+ARG JDK_ARCH=linux-x64-musl
+ARG JDK_URL=https://download.java.net/java/early_access/alpine/12/binaries/openjdk-14-ea+12_linux-x64-musl_bin.tar.gz
+ARG MAVEN_VERSION=3.6.2
+ARG MAVEN_URL=https://www-us.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
 RUN apk add --virtual .build-deps --no-cache wget \
       && wget -q --no-check-certificate $JDK_URL \
       && wget -q --no-check-certificate $MAVEN_URL \
@@ -10,8 +13,8 @@ RUN apk add --virtual .build-deps --no-cache wget \
       && tar -zxvf apache-maven-*.tar.gz \
       && rm -f *.tar.gz apk \
       && apk del --no-cache .build-deps
-ENV JAVA_HOME=/opt/jdk-13
-ENV PATH="/opt/jdk-13/bin:/opt/apache-maven-3.6.1/bin:${PATH}"
+ENV JAVA_HOME=/opt/jdk-14
+ENV PATH="/opt/jdk-14/bin:/opt/apache-maven-${MAVEN_VERSION}/bin:${PATH}"
 ARG GIT_TAG=robozonky-5.4.0
 ENV SOURCE_DIRECTORY=/usr/src/robozonky \
     BINARY_DIRECTORY=/tmp/robozonky
