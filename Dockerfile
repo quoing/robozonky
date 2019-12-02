@@ -15,7 +15,7 @@ RUN apk add --virtual .build-deps --no-cache wget \
       && apk del --no-cache .build-deps
 ENV JAVA_HOME=/opt/jdk-14
 ENV PATH="/opt/jdk-14/bin:/opt/apache-maven-${MAVEN_VERSION}/bin:${PATH}"
-ARG GIT_TAG=robozonky-5.5.0
+ARG GIT_TAG=robozonky-5.6.0
 ENV SOURCE_DIRECTORY=/usr/src/robozonky \
     BINARY_DIRECTORY=/tmp/robozonky
 #COPY assets/* $SOURCE_DIRECTORY
